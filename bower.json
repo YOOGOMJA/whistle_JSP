@@ -1,0 +1,17 @@
+{
+  "name": "whistle_JSP",
+  "homepage": "https://github.com/YOOGOMJA/whistle_JSP",
+  "authors": [
+    "KyeongSoo Yoo"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
