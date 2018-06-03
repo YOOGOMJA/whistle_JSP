@@ -1,4 +1,5 @@
 import java.lang.reflect.*;
+import org.json.simple.*;
 
 public class ReflectionMethod {
 	private static Class _parentClass;
@@ -44,12 +45,10 @@ public class ReflectionMethod {
 		return false;
 	}
 	
-	
-	
-	public void invoke(String fn_nm , Object params) {
+	public Object invoke(String fn_nm , JSONObject params) {
 		if(chkState()) {
 			try {
-				get(fn_nm).invoke(fn_nm, params);
+				return get(fn_nm).invoke(fn_nm, params);
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -61,6 +60,7 @@ public class ReflectionMethod {
 				e.printStackTrace();
 			}
 		}
+		return null;
 	}
 	
 }

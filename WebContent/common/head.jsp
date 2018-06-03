@@ -15,3 +15,8 @@
 <script type="text/javascript" src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../assets/bower_components/angular/angular.js"></script>
 
+
+<script type="text/javascript" src="../assets/scripts/modules.js"></script>
+
+<!-- SERVICE LOAD -->
+<script type="text/javascript" src="../assets/scripts/services/user.serv.js"></script>
