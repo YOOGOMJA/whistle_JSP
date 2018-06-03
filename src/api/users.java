@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import util.ReflectionMethod;
 
 import org.json.simple.*;
-import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.*;;
+
 
 /**
  * Servlet implementation class users
@@ -36,8 +37,17 @@ public class users extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		//JSONObject o = (JSONObject) JSONSerializer.toJSON(request.getParameter("WHATEVER"));
+		JSONParser parser = new JSONParser();
+		JSONObject prms = null;
+		try {
+			prms = (JSONObject) parser.parse(request.getParameter("params"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		JSONObject jsonObj = rm.callAndGetResult(request.getParameter("fn"), null);
+		JSONObject jsonObj = rm.callAndGetResult(request.getParameter("fn"), prms);
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().append(jsonObj.toJSONString());
 		
@@ -52,9 +62,39 @@ public class users extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().append(jsonObj.toJSONString());
 	}
-
-	public int refMethod(JSONObject params) {
-		
+	
+	//================================================================================
+    // Sample
+    //================================================================================
+	
+	int refMethod(JSONObject params) {
 		return 1;
 	}
+	
+	public JSONObject refMethod2(JSONObject params) {
+		JSONObject ret = new JSONObject();
+		
+		//System.out.println(params.get("a"));
+		
+		long a = (long) params.get("a");
+		long b = (long) params.get("b");
+		
+		ret.put("ret", (a+b));
+		
+		return ret;
+	}
+	
+	
+	//================================================================================
+    // LOGIN METHODS
+    //================================================================================
+	
+	public JSONObject login(JSONObject params) {
+		
+		
+		
+		return null;
+	}
+	
+	
 }

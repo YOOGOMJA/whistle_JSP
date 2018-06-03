@@ -4,9 +4,16 @@ import java.lang.reflect.*;
 import org.json.simple.*;
 
 public class ReflectionMethod {
+	//================================================================================
+    // Properties
+    //================================================================================
 	private static Class<?> _parentClass;
 	private static Method[] _parentMethods;
 	private static Object _parentClassInstance;
+
+	//================================================================================
+    // Constructor
+    //================================================================================
 
 	/*
 	 * ReflectionMEthod 클래스의 생성자 함수이다. 인스턴스가 존재해야한다. 
@@ -23,6 +30,10 @@ public class ReflectionMethod {
 		_parentClass = _parentClassInstance.getClass();
 		_parentMethods = _parentClass.getDeclaredMethods();
 	}
+	
+	//================================================================================
+    // private methods
+    //================================================================================
 	
 	/*
 	 * 내부 함수이다. 생성자가 제대로 동작했는지 체크한다.
@@ -51,6 +62,10 @@ public class ReflectionMethod {
 		System.out.println("[RM] can not find method by [" + name + "]");
 		return null;
 	}
+	
+	//================================================================================
+    // public Methods
+    //================================================================================
 
 	/*
 	 * 현재 클래스에 함수가 존재하는지 여부를 확인한다. 
@@ -82,7 +97,7 @@ public class ReflectionMethod {
 		JSONObject obj = new JSONObject();
 		try {
 			Method fn = get(fn_nm);
-			Object value = fn.invoke(_parentClassInstance , new Object[] { params });
+			Object value = fn.invoke(_parentClassInstance , params);
 			obj.put("INVOKE_RESULT_CD", 1);
 			obj.put("INVOKE_DATA", value);
 			return obj;

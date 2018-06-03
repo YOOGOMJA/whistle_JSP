@@ -10,11 +10,18 @@ window['_ANG_MAIN_MODULE']
 	
 	return {
 		test : function(){
+			
+			var prms = {
+				'a' : 1,
+				'b' : 2
+			}
+			
 			return $http({
 				method : 'GET',
 				url : conf.url,
 				params : {
-					fn : 'refMethod'
+					'fn' : 'refMethod2',
+					'params' : JSON.stringify(prms)
 				}
 			});
 		}
