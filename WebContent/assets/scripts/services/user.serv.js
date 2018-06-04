@@ -20,7 +20,7 @@ window['_ANG_MAIN_MODULE']
 				method : 'GET',
 				url : conf.url,
 				params : {
-					'fn' : 'refMethod2',
+					'fn' : 'get',
 					'params' : JSON.stringify(prms)
 				}
 			});

@@ -1,16 +1,17 @@
 package api;
 
 import java.io.IOException;
+import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.ReflectionMethod;
+import util.*;
 
 import org.json.simple.*;
-import org.json.simple.parser.*;;
+import org.json.simple.parser.*;
 
 
 /**
@@ -20,6 +21,8 @@ import org.json.simple.parser.*;;
 public class users extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static ReflectionMethod rm;
+	private CommonVariable cv;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,6 +31,7 @@ public class users extends HttpServlet {
         // TODO Auto-generated constructor stub
         //rm = new ReflectionMethod(this.getClass().getName());
         rm = new ReflectionMethod(this);
+        cv = CommonVariable.getInstance();
     }
 
 	/**
@@ -89,11 +93,27 @@ public class users extends HttpServlet {
     // LOGIN METHODS
     //================================================================================
 	
-	public JSONObject login(JSONObject params) {
+	public JSONObject get (JSONObject params) throws ClassNotFoundException, SQLException {
 		
-		
-		
-		return null;
+		DBConnector dc = new DBConnector();
+		//JSONObject selected = dc.excute("select * from tb_user");
+		JSONObject upt = dc.update("insert into TB_User (userMail, userName, userCity, userPw) values('a2@b.com', 'test' , 0, '1234');");
+		JSONObject ret = new JSONObject();
+		//System.out.println(selected);
+		//ret.put("selected" , selected );
+		ret.put("result" , upt);
+//		Class.forName("com.mysql.jdbc.Driver");
+//		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/whistle" , "root", "1111");
+//		Statement stmt = conn.createStatement();
+//		ResultSet rs = stmt.executeQuery("select * from tb_user");
+//		while(rs.next()) {
+//			System.out.println(rs.getString(2));
+//		}
+//		rs.close();
+//		stmt.close();
+//		conn.close();	
+	
+		return ret;
 	}
 	
 	
