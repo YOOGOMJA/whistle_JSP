@@ -87,22 +87,24 @@ public class DBConnector {
      * 
      * @author              KYEONGSOO YOO
      * @param   query       조회에 사용할 함수, insert/update문을 이곳에서 사용하지 말것.
-     * @return  JSONObject  조회된 내용들 
+     * @return  JSONArray   조회된 내용들 
      * */
-    public JSONObject excute(String query) throws ClassNotFoundException, SQLException {
+    public JSONArray excute (String query) throws ClassNotFoundException, SQLException {
         Connection conn = connect();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
 
-        JSONObject result = new JSONObject();
+        JSONArray result = new JSONArray();
+        
         int colCnt = rs.getMetaData().getColumnCount();
         while (rs.next()) {
             JSONObject item = new JSONObject();
             for (int i = 1; i < colCnt; i++) {
-                item.put(rs.getMetaData().getColumnName(i), rs.getString(i + 1));
+                item.put(rs.getMetaData().getColumnName(i), rs.getString(i));
 
             }
-            result.put(rs.getString(1), item);
+            //result.put(rs.getString(1), item);
+            result.add(item);
         }
 
         if (stmt != null)

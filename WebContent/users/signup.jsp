@@ -17,7 +17,7 @@
         <h1 class="h3 mb-3 font-weight-normal">Whistle</h1>
         <p></p>
       </div>
-
+      
       <div class="form-label-group">
         <input ng-model='mod.email' type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
         <label for="inputEmail">Email</label>
@@ -35,6 +35,20 @@
         <input ng-model='mod.password2' type="password" id="inputPassword2" class="form-control" placeholder="Password" required="">
         <label for="inputPassword2">Password Validation</label>
       </div>
+      
+    <div class="alert alert-danger" role="alert" ng-if='mod.err.cd < 0' >
+        {{ mod.err.msg }}
+        <button ng-click='fn.evt.err.clear()' type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+    <div class="checkbox mb-3">
+        <label>
+          <a href="/Whislte/users/login.jsp">이미 계정이 있으신가요 ?</a>
+        </label>
+      </div>
+      
 
       <button ng-click='fn.evt.submit()' class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
       <p class="mt-5 mb-3 text-muted text-center">© 2017-2018</p>

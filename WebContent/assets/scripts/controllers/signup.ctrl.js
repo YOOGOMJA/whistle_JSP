@@ -8,11 +8,16 @@ window['_ANG_MAIN_MODULE'].controller('signupCtrl', [ '$scope', '$rootScope',
 function signupCtrl($s, $rs, $userServ){
 	
 	$s.mod = {
-		email : '1',
+		email : '',
 		name : '',
 		password : '',
 		password2 : '',
-		city : 0
+		city : 0,
+		
+		err : {
+			msg : '',
+			cd : 0
+		}
 	}
 	
 	var _fn = {
@@ -33,25 +38,55 @@ function signupCtrl($s, $rs, $userServ){
 	
 	$s.fn = {
 		evt : {
+			err : {
+				clear : function(){
+					$s.mod.err.cd = 0;
+					$s.mod.err.msg=  '';
+				}
+			},
 			submit : function(){
-				console.log('called');
+
+				$s.fn.evt.err.clear();
+
 				if(_fn.valid()){
 					$userServ.signup({
 						userName : $s.mod.name,
-						userMail : $s.mod.mail,
-						userPassword : $s.mod.password,
-						userPassword2 : $s.mod.password2,
-						city : 0
+						userMail : $s.mod.email,
+						userPW : $s.mod.password,
+						userPW2 : $s.mod.password2,
+						userCity : 0
 					})
 					.then(function(d){
-						alert('success!');
-						console.log(d);
+						if(d.data.RESULT_CD == 1){
+							if(d.data.RESULT_DATA.METHOD_RESULT_CD > 0){
+								alert('가입 성공!');
+							}
+							else{
+								//alert(d.data.RESULT_DATA.METHOD_ERR_MSG);
+								console.log(d.data.RESULT_DATA);
+								$s.mod.err.cd = -1;
+								$s.mod.err.msg = d.data.RESULT_DATA.METHOD_ERR_MSG;
+							}
+						}
+						else{
+							//alert(d.data.RESULT_DATA.METHOD_ERR_MSG);
+							console.log(d.data.RESULT_DATA);
+							
+							$s.mod.err.cd = -2;
+							$s.mod.err.msg = d.data.RESULT_DATA.METHOD_ERR_MSG;
+						}
 					} , function(d){
-						alert('err!');
+						alert('일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세');
 						console.log(d);
 					})
 				}
-				else{ alert('항목확인 !'); }
+				else{ 
+					$s.mod.err.cd = -3;
+					if($s.mod.password != $s.mod.password2){
+						$s.mod.err.msg = '비밀번호가 일치하지 않습니다';
+					}
+					else{ $s.mod.err.msg = '입력값을 확인해주세요'; }
+				}
 			}
 		}
 	}

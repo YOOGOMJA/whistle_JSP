@@ -107,18 +107,18 @@ public class ReflectionMethod {
             // TODO Auto-generated catch block
             e.printStackTrace();
             obj.put("INVOKE_RESULT_CD", -1);
-            obj.put("INVOKE_ERR_MSG", e.getMessage());
+            obj.put("INVOKE_ERR_MSG", e.getLocalizedMessage());
             return obj;
         } catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             obj.put("INVOKE_RESULT_CD", -2);
-            obj.put("INVOKE_ERR_MSG", e.getMessage());
+            obj.put("INVOKE_ERR_MSG", e.getLocalizedMessage());
             return obj;
         } catch (InvocationTargetException e) {
             // TODO Auto-generated catch block
             obj.put("INVOKE_RESULT_CD", -3);
-            obj.put("INVOKE_ERR_MSG", e.getMessage());
+            obj.put("INVOKE_ERR_MSG", e.getLocalizedMessage());
             return obj;
 
         }
@@ -148,6 +148,7 @@ public class ReflectionMethod {
                     jsonObj.put("RESULT_CD", -2);
                     jsonObj.put("ERR_MSG", "[RM] 요청된 함수 [" + fn_nm + "]의 실행 중 오류가 발생했습니다.");
                     jsonObj.put("INVOKE_ERR_MSG", ret.get("INVOKE_ERR_MSG"));
+                    jsonObj.put("INVOKE_ERR_CD", ret.get("INVOKE_RESULT_CD"));
                 }
             } else {
                 jsonObj.put("RESULT", "FAIL");
