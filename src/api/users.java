@@ -122,5 +122,68 @@ public class users extends HttpServlet {
 
         return ret;
     }
+    
+    /*
+     * API, 회원가입용 함수. SNS 계정과 상관없음 
+     * 
+     * */
+    public JSONObject signup (JSONObject params) throws ClassNotFoundException, SQLException {
+        JSONObject ret = new JSONObject();
+        int ret_cd = 1;
+        String err_msg = "";
+        
+        // # Properties 
+        // userName
+        // userMail
+        // userPW
+        // userPW2
+        // userCity : optional
+        String userMail = (String)params.get("userMail");
+        String userName = (String)params.get("userName");
+        String userPW = (String) params.get("userPW");
+        String userPW2 = (String) params.get("userPW2");
+        long userCity = (long) params.get("userCity");
+        
+        if(userMail == null || userMail.isEmpty()) { 
+            ret_cd = 0;
+            err_msg = "이메일을 입력해주세요";
+        }
+        else if(userName == null || userName.isEmpty()) {
+            ret_cd = 0;
+            err_msg = "이름을 입력해주세요";
+        }
+        else if(userPW == null || userPW.isEmpty()) {
+            ret_cd = 0;
+            err_msg = "비밀번호를 입력해주세요";
+        }
+        else if(userPW2 == null || userPW2.isEmpty()) {
+            ret_cd = 0;
+            err_msg = "확인 비밀번호를 입력해주세요";
+        }
+        else if(userPW.equals(userPW2)) {
+            ret_cd = 0;
+            err_msg = "비밀번호가 일치하지 않습니다";
+        }
 
+        String query = "";
+        query += "insert into TB_User (userMail, userName, userPW, userCity) ";
+        query += "values (";
+        query += String.format("'%s' , '%s' , '%s' , %d", userMail, userName, userPW, userCity);
+        query += ")";
+        
+        DBConnector dc = new DBConnector();
+        JSONObject dbJSON = dc.update(query);
+        
+        ret.put("METHOD_RESULT_CD", ret_cd);
+        if(ret_cd <= 0) { ret.put("METHOD_ERR_MSG" , err_msg);}
+        ret.put("METHOD_RESULT_DATA", dbJSON.get("affectedRow"));
+        
+        return ret;
+    }
+    
+    public JSONObject signupWithSNS(JSONObject params) throws ClassNotFoundException, SQLException{
+        JSONObject ret = new JSONObject();
+        
+        return ret;
+    }
 }

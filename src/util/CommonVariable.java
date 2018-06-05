@@ -49,7 +49,6 @@ public class CommonVariable {
      * 데이터베이스에 관련된 항목들만 가져온다
      * 
      * @param   type            가져올 항목의 열거형 코드
-     * 
      * @return  String          각 코드에 맞는 private 변수들 
      */
     public String getDBInfo(CV_DB_VARIABLE type) {
