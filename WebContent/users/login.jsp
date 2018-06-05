@@ -4,7 +4,7 @@
 <html data-ng-app="whistleApp">
 <head>
 	<jsp:include page="../common/head.jsp" />
-	<link rel="stylesheet" type="text/css" href="../assets/css/login.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/user/login.css">
 	<script type='text/javascript' src="../assets/scripts/controllers/login.ctrl.js"></script>
 </head>
 <body ng-controller="loginCtrl">
@@ -30,6 +30,11 @@
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <div class="checkbox mb-3">
+        <label>
+          <a href="/Whislte/users/signup.jsp">아직 계정이 없으신가요 ?</a>
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

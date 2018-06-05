@@ -177,7 +177,7 @@ public class users extends HttpServlet {
         ret.put("METHOD_RESULT_CD", ret_cd);
         if(ret_cd <= 0) { ret.put("METHOD_ERR_MSG" , err_msg);}
         ret.put("METHOD_RESULT_DATA", dbJSON.get("affectedRow"));
-        
+        // hello
         return ret;
     }
     
