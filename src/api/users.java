@@ -1,7 +1,7 @@
 package api;
 
 import java.io.IOException;
-import java.sql.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.http.HTTPException;
 
+import java.sql.*;
 import util.*;
-
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
@@ -111,7 +111,7 @@ public class users extends HttpServlet {
         
         // 데이터 베이스 요청을 위한 문자열 
         // 잦은 String append는 성능과 가독성에 좋지 않아 String.format을 사용하도록 함 
-        String query = String.format("select * from tb_user where userMail = '' and userPw = '' ", mail , pw);
+        String query = String.format("select * from tb_user where userMail = '%s' and userPw = '%' ", mail , pw);
         
         // DB에 연결하기 위함 클래스를 초기화한다.
         // 본 클래스는 util 패키지에 들어있다.
