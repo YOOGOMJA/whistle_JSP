@@ -45,7 +45,11 @@ window['_ANG_MAIN_MODULE']
 		logout : function(){
 			return $http({
 				method : 'GET',
-				url : conf.url
+				url : conf.url,
+				params : {
+					'fn' : 'logout',
+					'params' : ''
+				}
 			});
 		}
 	}

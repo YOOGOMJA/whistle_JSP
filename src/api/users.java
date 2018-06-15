@@ -45,7 +45,7 @@ public class users extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-
+        rm = new ReflectionMethod(this);
         _session = request.getSession();
 
         JSONParser parser = new JSONParser();
@@ -71,6 +71,7 @@ public class users extends HttpServlet {
             throws ServletException, IOException {
         // TODO Auto-generated method stub
         // doGet(request, response);
+        rm = new ReflectionMethod(this);
         JSONParser parser = new JSONParser();
         JSONObject prms = null;
         try {
@@ -347,6 +348,7 @@ public class users extends HttpServlet {
             JSONObject item = (JSONObject) js[0];
             _session.setAttribute("userSeq", item.get("userSeq"));
             _session.setAttribute("userMail", item.get("userMail"));
+            _session.setAttribute("userName", item.get("userName"));
         }
 
         return ret;
@@ -358,9 +360,10 @@ public class users extends HttpServlet {
     public JSONObject logout (JSONObject params) throws ClassNotFoundException, SQLException{
         JSONObject ret = new JSONObject();
         
-        _session.removeAttribute("userSeq");
-        _session.removeAttribute("userMail");
+        //_session.removeAttribute("userSeq");
+        //_session.removeAttribute("userMail");
         
+        _session.invalidate();
         ret.put("METHOD_RESULT_CD", 1);
         
         return ret;

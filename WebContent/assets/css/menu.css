@@ -1,1 +1,38 @@
 @charset "UTF-8";
+
+.nav-menu .nav {
+    min-height : 40px;
+    background-color : #1976D2;
+    position : fixed;
+    width : 100%;
+    padding : .5rem;    
+}
+
+.nav-menu section .user-info{
+    min-height : 200px;
+    background-color : #3f51b5;
+    padding : 50px;
+}
+
+.nav-menu section .user-info .btn-close {  
+    top : 5px;
+    right : 5px;
+    position : absolute;
+    
+}
+
+.nav-menu section .user-info .user-info-container{
+    margin : auto;
+    background-color : #fff;
+    height : 150px;
+    width : 150px;
+    border-radius : 75px;    
+}
+
+.nav-menu section .user-info .user-info-container md-icon{
+    height : 100%;
+    width : 100%;
+    color : #000;
+    fill : #000;
+    clip-path : circle(75px at center);
+}

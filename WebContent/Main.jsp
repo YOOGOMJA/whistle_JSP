@@ -10,7 +10,7 @@ if(session.getAttribute("userSeq") == null){
 <html ng-app='whistleApp'>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Whistle</title>
 
 <jsp:include page="/common/head.jsp" />
 <link rel="stylesheet" type="text/css" href="/Whislte/assets/css/main.css">

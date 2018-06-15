@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS TB_Player
     plyrHeight     INT                                             COMMENT '',
     plyrWeight     INT                                             COMMENT '',
     plyrBackNumber INT             NOT NULL                        COMMENT '',
-    plyrTeamSeq    INT                                             COMMENT '',
+    plyrTeamSeq         INT                                        COMMENT '',
+    plyrTeamPriority    INT        NOT NULL     DEFAULT 99
     PRIMARY KEY(plyrSeq),
     FOREIGN KEY(plyrTeamSeq)    REFERENCES TB_Team (teamSeq)
 )DEFAULT CHARSET=utf8;

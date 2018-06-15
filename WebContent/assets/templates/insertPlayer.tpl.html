@@ -1,0 +1,53 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Insert Member</h2>
+        
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+       <form name='insertMemberForm'>
+       </form>
+      <div class="md-dialog-content">
+        <div layout='row'>
+            <md-input-container flex="100">
+              <label>Player Name</label>
+              <input required name="plyrName" ng-model="player.name">
+              <div ng-messages="insertMemberForm.plyrName.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+        </div>
+        <div layout='row'>
+            <md-input-container flex="50">
+              <label>Back Number</label>
+              <input name="plyrName" type='number' ng-model="player.backNumber">
+            </md-input-container>
+            <md-input-container flex="50">
+              <label>Position</label>
+              <md-select name="type" ng-model="player.position" required>
+                <md-option value="0">PG</md-option>
+                <md-option value="1">SG</md-option>
+                <md-option value="2">SF</md-option>
+                <md-option value="3">PF</md-option>
+                <md-option value="4">C</md-option>
+                <md-option value="5">G</md-option>
+                <md-option value="6">F</md-option>
+              </md-select>
+            </md-input-container>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">
+       Cancel
+      </md-button>
+      <md-button ng-click="answer()">
+        Insert
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

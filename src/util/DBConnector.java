@@ -90,10 +90,13 @@ public class DBConnector {
      * @return  JSONArray   조회된 내용들 
      * */
     public JSONArray excute (String query) throws ClassNotFoundException, SQLException {
+        System.out.println("ex0-start");
+        System.out.println(query);
+        System.out.println("ex0-end");
         Connection conn = connect();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
-
+        
         JSONArray result = new JSONArray();
         
         int colCnt = rs.getMetaData().getColumnCount();
@@ -106,6 +109,10 @@ public class DBConnector {
             //result.put(rs.getString(1), item);
             result.add(item);
         }
+        
+        System.out.println("ex1-start");
+        System.out.println(result);
+        System.out.println("ex1-end");
 
         if (stmt != null)
             try {

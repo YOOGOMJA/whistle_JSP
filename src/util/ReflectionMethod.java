@@ -154,6 +154,11 @@ public class ReflectionMethod {
                 jsonObj.put("RESULT", "FAIL");
                 jsonObj.put("RESULT_CD", -1);
                 jsonObj.put("ERR_MSG", "[RM] 요청된 함수 [" + fn_nm + "]이 존재하지 않습니다.");
+                System.out.println("METHOD IS NOT EXISTS - start");
+                for(int i = 0 ; i < _parentMethods.length ; i++) {
+                    System.out.println(_parentMethods[i].getName());
+                }
+                System.out.println("METHOD IS NOT EXISTS - end");
             }
         } else {
             jsonObj.put("RESULT", "FAIL");
