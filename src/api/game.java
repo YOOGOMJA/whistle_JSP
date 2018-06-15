@@ -41,7 +41,7 @@ public class game extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-
+        rm = new ReflectionMethod(this);
         _session = request.getSession();
 
         JSONParser parser = new JSONParser();
@@ -66,7 +66,7 @@ public class game extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-
+        rm = new ReflectionMethod(this);
         _session = request.getSession();
 
         JSONParser parser = new JSONParser();
@@ -83,5 +83,8 @@ public class game extends HttpServlet {
         response.getWriter().append(jsonObj.toJSONString());
 
     }
+    
+    
+    
 
 }
