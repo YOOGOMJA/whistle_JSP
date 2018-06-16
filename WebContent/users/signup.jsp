@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Whistle - Signup </title>
-    <jsp:include page="../common/head.jsp" />
+    <jsp:include page="../common/loginHead.jsp" />
     <link rel="stylesheet" type="text/css" href="../assets/css/user/signup.css">
     <script type='text/javascript' src="../assets/scripts/controllers/signup.ctrl.js"></script>
     
@@ -13,9 +13,8 @@
 <body ng-controller='signupCtrl'>
     <form class="form-signin">
       <div class="text-center mb-4">
-        <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Whistle</h1>
-        <p></p>
+        <img class="mb-4" src="/Whislte/assets/images/logo.png" alt="" width="180" height="180">
+        
       </div>
       
       <div class="form-label-group">

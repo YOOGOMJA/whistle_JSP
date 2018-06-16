@@ -38,6 +38,7 @@ function loginCtrl($s, $rs, $userServ) {
 	$s.fn = {
 		err : {
 			clear : function(){
+				console.log('He')
 				$s.mod.err.cd = 0;
 				$s.mod.err.msg = '';
 			}

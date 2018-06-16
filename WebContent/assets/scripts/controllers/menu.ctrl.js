@@ -15,7 +15,7 @@ function menuCtrl($s , $rs, $mdSidenav,  $userServ , $mdDialog){
 			{ title : 'Home' , link : '/Whislte/Main.jsp' },
 			{ title : 'Make a Game' , link : '/Whislte/game/main.jsp' },
 			{ title : 'Team Info' , link : '/Whislte/team/info.jsp' },
-			{ title : 'Game History' , link : '/Whislte/game/main.jsp' },
+			
 			{ title : 'Statistics' , link : '/Whislte/game/main.jsp' },
 		]
 	}

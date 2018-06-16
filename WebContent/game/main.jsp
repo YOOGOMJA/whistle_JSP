@@ -26,16 +26,43 @@ if(session.getAttribute("userSeq") == null){
             </md-toolbar>
             
             <!-- Team이 없는 경우  -->
-            <md-content flex layout-padding class='team-info empty' ng-if='mod.team.info.teamSeq == -1'>
+            <md-content flex layout-padding class='team-info empty' >
                 <div class='cover'>
-                    <h1 class='md-headline center warn'>팀이 아직 없어요</h1>
-                    <md-button class="md-raised md-primary btn" ng-click='evt.team.create()'>Create Team</md-button>
+                    <h1 class='md-headline center warn' ng-bind='mod.game.info.gameState === "1" ? "진행중" : "종료"'></h1>
+                    <md-button class="md-raised md-primary btn" ng-click='evt.game.view()'>Join Game</md-button>
+                    <p style="text-align: right; font-size: 18px; font-weight : 800; color : white;">
+                        HOME {{ mod.game.score.home }} : AWAY {{ mod.game.score.away }} {{mod.game.timeTxt}}
+                    </p>
                 </div>
             </md-content>
-            <md-content flex layout-padding class='team-info' ng-if='mod.team.info.teamSeq > 0'>
-               팀명 : <h1 class='md-headline' ng-bind='mod.team.info.teamName'></h1>
-                
+            
+            <md-toolbar class="md-primary">
+                <div class="md-toolbar-tools">
+                  <h2 class="md-flex">Game History</h2>
+                </div>
+            </md-toolbar>
+            
+            <md-content flex layout-padding>
+                <table class='md-api-table'>
+                    <tr>
+                        <th>Date</th>
+                        <th>Home</th>
+                        <th>Away</th>
+                        <th>Detail</th>
+                    </tr>
+                    <tr ng-repeat='item in mod.game.history'>
+                        <td ng-bind='item.date | frmDate'></td>
+                        <td ng-bind='item.homeScore'></td>
+                        <td ng-bind='item.awayScore '></td>
+                         <td >
+                            <md-button class='md-primary' ng-click='evt.plyr.movToStart(item)'  aria-label="change">
+                                Detail
+                            </md-button>
+                        </td>
+                    </tr>
+                </table>
             </md-content>
+        </md-content>
             
         </md-content>
         

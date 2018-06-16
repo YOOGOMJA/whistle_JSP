@@ -22,9 +22,13 @@
 <script type="text/javascript" src="/Whislte/assets/bower_components/angular-messages/angular-messages.min.js"></script>
 <script type="text/javascript" src="/Whislte/assets/bower_components/angular-material/angular-material.min.js"></script>
 
+<script type="text/javascript" src="/Whislte/assets/scripts/moment-with-locales.min.js"></script>
+
 <script type="text/javascript" src="/Whislte/assets/scripts/modules.js"></script>
 
 <!-- SERVICE LOAD -->
 <script type="text/javascript" src="/Whislte/assets/scripts/services/user.serv.js"></script>
 <script type="text/javascript" src="/Whislte/assets/scripts/services/team.serv.js"></script>
 <script type="text/javascript" src="/Whislte/assets/scripts/services/player.serv.js"></script>
+<script type="text/javascript" src="/Whislte/assets/scripts/services/game.serv.js"></script>
+

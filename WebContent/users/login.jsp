@@ -9,18 +9,15 @@ if(session.getAttribute("userSeq") != null){
 %>
 <html data-ng-app="whistleApp">
 <head>
-	<jsp:include page="../common/head.jsp" />
+	<jsp:include page="../common/loginHead.jsp" />
 	<link rel="stylesheet" type="text/css" href="../assets/css/user/login.css">
 	<script type='text/javascript' src="../assets/scripts/controllers/login.ctrl.js"></script>
 </head>
 <body ng-controller="loginCtrl">
 	<form class="form-signin">
       <div class="text-center mb-4">
-        <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Whistle</h1>
-        <p>
-			
-    		</p>
+        <img class="mb-4" src="/Whislte/assets/images/logo.png" alt="" width="180" height="180">
+        
             
       </div>
 
@@ -48,7 +45,7 @@ if(session.getAttribute("userSeq") != null){
       
         <div class="alert alert-danger" role="alert" ng-if='mod.err.cd < 0' >
             {{ mod.err.msg }}
-            <button ng-click='fn.evt.err.clear()' type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button ng-click='fn.err.clear()' type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
