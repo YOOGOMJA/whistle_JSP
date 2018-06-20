@@ -32,8 +32,7 @@ public class users extends HttpServlet {
     public users() {
         super();
         // TODO Auto-generated constructor stub
-        // rm = new ReflectionMethod(this.getClass().getName());
-        rm = new ReflectionMethod(this);
+        rm = new ReflectionMethod();
         cv = CommonVariable.getInstance();
     }
 
@@ -45,7 +44,6 @@ public class users extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-        rm = new ReflectionMethod(this);
         _session = request.getSession();
 
         JSONParser parser = new JSONParser();
@@ -57,7 +55,7 @@ public class users extends HttpServlet {
             e.printStackTrace();
         }
 
-        JSONObject jsonObj = rm.callAndGetResult(request.getParameter("fn"), prms);
+        JSONObject jsonObj = rm.callAndGetResult(request.getParameter("fn"), prms ,this);
         response.setCharacterEncoding("UTF-8");
         response.getWriter().append(jsonObj.toJSONString());
 
@@ -71,7 +69,6 @@ public class users extends HttpServlet {
             throws ServletException, IOException {
         // TODO Auto-generated method stub
         // doGet(request, response);
-        rm = new ReflectionMethod(this);
         JSONParser parser = new JSONParser();
         JSONObject prms = null;
         try {
@@ -83,7 +80,7 @@ public class users extends HttpServlet {
 
         _session = request.getSession();
 
-        JSONObject jsonObj = rm.callAndGetResult(request.getParameter("fn"), prms);
+        JSONObject jsonObj = rm.callAndGetResult(request.getParameter("fn"), prms, this);
         response.setCharacterEncoding("UTF-8");
         response.getWriter().append(jsonObj.toJSONString());
 

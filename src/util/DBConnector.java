@@ -106,13 +106,8 @@ public class DBConnector {
                 item.put(rs.getMetaData().getColumnName(i), rs.getString(i));
 
             }
-            //result.put(rs.getString(1), item);
             result.add(item);
         }
-        
-        System.out.println("ex1-start");
-        System.out.println(result);
-        System.out.println("ex1-end");
 
         if (stmt != null)
             try {

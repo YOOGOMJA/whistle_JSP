@@ -24,16 +24,16 @@ public class ReflectionMethod {
      * ReflectionMEthod 클래스의 생성자 함수이다. 인스턴스가 존재해야한다. 보통 실행할 함수가 속한 클래스의 this를 넘겨주면
      * 된다.
      * 
+     * 수정 2018-06-19 KYEONGSOO YOO
+     * 초기화 부분을 함수 실행시로 옮김 
+     * 
      * @author                  KYEONGSOO YOO
-     * @param   instance        실행할 함수가 속한 클래스의 인스턴스
+     * 
      */
-    public ReflectionMethod(Object instance) {
+    public ReflectionMethod() {
         super();
-
-        _parentClassInstance = instance;
-        _parentClass = _parentClassInstance.getClass();
-        _parentMethods = _parentClass.getDeclaredMethods();
     }
+    
 
     // ================================================================================
     // private methods
@@ -65,11 +65,21 @@ public class ReflectionMethod {
         System.out.println("[RM] can not find method by [" + name + "]");
         return null;
     }
+    
+    private boolean setInstance(Object instance) {
+        if(instance != null) {
+            _parentClassInstance = instance;
+            _parentClass = _parentClassInstance.getClass();
+            _parentMethods = _parentClass.getDeclaredMethods();
+            return true;
+        }
+        else {
+            return false;
+        }
+        
+    }
 
-    // ================================================================================
-    // public Methods
-    // ================================================================================
-
+    
     /*
      * 현재 클래스에 함수가 존재하는지 여부를 확인한다.
      * 
@@ -77,7 +87,7 @@ public class ReflectionMethod {
      * @param   name            가져올 함수의 이름
      * @return                  함수의 존재 여부
      */
-    public boolean exists(String fn_nm) {
+    private boolean exists(String fn_nm) {
         for (int i = 0; i < _parentMethods.length; i++) {
             // System.out.println(_parentMethods[i]);
             if (_parentMethods[i].getName().equals(fn_nm)) {
@@ -95,7 +105,7 @@ public class ReflectionMethod {
      * @param   params      함수에 넘겨줄 매개변수들, json
      * @return              함수 실행 결과, json
      */
-    public JSONObject invoke(String fn_nm, JSONObject params) {
+    private JSONObject invoke(String fn_nm, JSONObject params) {
         JSONObject obj = new JSONObject();
         try {
             Method fn = get(fn_nm);
@@ -125,6 +135,7 @@ public class ReflectionMethod {
 
     }
 
+
     /*
      * 클래스의 함수를 실행하고 결과 json까지 만들어준다. invoke, exists, get을 합친 것이다. 본 함수를 사용할
      * 
@@ -133,7 +144,7 @@ public class ReflectionMethod {
      * @param   params      함수에 넘겨줄 매개변수들, json
      * @return              함수 실행 결과, json
      */
-    public JSONObject callAndGetResult(String fn_nm, JSONObject params) {
+    private JSONObject callAndGetResult(String fn_nm, JSONObject params) {
         JSONObject jsonObj = new JSONObject();
         if (chkState()) {
             if (exists(fn_nm)) {
@@ -167,6 +178,49 @@ public class ReflectionMethod {
         }
 
         return jsonObj;
+    }
+    
+
+    // ================================================================================
+    // public Methods
+    // ================================================================================
+
+    /*
+     * 현재 클래스에 함수가 존재하는지 여부를 확인한다.
+     * 
+     * @author                  KYEONGSOO YOO
+     * @param   name            가져올 함수의 이름
+     * @param   instance        확인할 클래스의 인스턴스 
+     * @return                  함수의 존재 여부
+     */
+    public boolean exists(String fn_nm , Object instance) {
+        if(setInstance(instance)) {
+            return exists(fn_nm);
+        }
+        else {
+            return false;
+        }
+    }
+
+    /*
+     * 클래스의 함수를 실행하고 결과 json까지 만들어준다. invoke, exists, get을 합친 것이다. 본 함수를 사용할
+     * 
+     * @author              KYEONGSOO YOO
+     * @param   fn_nm       가져올 함수의 이름
+     * @param   params      함수에 넘겨줄 매개변수들, json
+     * @param   instance        확인할 클래스의 인스턴스 
+     * @return              함수 실행 결과, json
+     */
+    public JSONObject callAndGetResult(String fn_nm , JSONObject params, Object instance) {
+        if(setInstance(instance)) {
+            return callAndGetResult(fn_nm, params);
+        }else {
+            JSONObject ret = new JSONObject();
+            ret.put("RESULT" , "FAIL");
+            ret.put("RESULT_CD", 1);
+            ret.put("ERR_MSG" , "클래스의 인스턴스가 주어지지 않았습니다.");
+            return ret;
+        }
     }
 
 }
